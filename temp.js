@@ -53,3 +53,24 @@ http.createServer((req, res) => {
   <h1>Random text from index.html</h1>
 </body>
 </html>
+
+
+//note: this is shorter version
+//one file only which is app.js
+const http = require('http');
+
+// user-defined functions
+const cToF = c => (c * 9/5) + 32;
+const fToC = f => (f - 32) * 5/9;
+
+// console output
+console.log("Temperature Converter");
+console.log(`100C = ${cToF(100)}F`);
+console.log(`212F = ${fToC(212)}C`);
+
+http.createServer((req, res) => {
+  if (req.url === "/") {
+    res.writeHead(200, {'Content-Type':'text/html'});
+    res.end("<h1>Random text from server</h1>");
+  }
+}).listen(3000, () => console.log("http://localhost:3000"));
