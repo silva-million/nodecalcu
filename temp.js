@@ -4,7 +4,6 @@ project/
     └── index.html
 
 //<~~~~~~~
-
 //app.js
 const http = require('http');
 const fs = require('fs');
@@ -18,6 +17,12 @@ function fToC(f) {
   return (f - 32) * 5/9;
 }
 
+// sample conversion (output in console)
+const c = 100, f = 212;
+console.log("Temperature Converter");
+console.log(`${c}C = ${cToF(c)}F`);
+console.log(`${f}F = ${fToC(f)}C`);
+
 // create server
 http.createServer((req, res) => {
   if (req.url === "/") {
@@ -28,15 +33,8 @@ http.createServer((req, res) => {
         res.writeHead(500, {'Content-Type': 'text/plain'});
         res.end("Error loading page");
       } else {
-        // sample conversion
-        const c = 100, f = 212;
-        const result = `
-          <h1>Temperature Converter</h1>
-          <p>${c}C = ${cToF(c)}F</p>
-          <p>${f}F = ${fToC(f)}C</p>
-        `;
         res.writeHead(200, {'Content-Type': 'text/html'});
-        res.end(data + result);
+        res.end(data); // only shows the HTML content
       }
     });
   } else {
@@ -49,6 +47,9 @@ http.createServer((req, res) => {
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Temperature Converter</title>
+  <title>My Page</title>
 </head>
 <body>
+  <h1>Random text from index.html</h1>
+</body>
+</html>
